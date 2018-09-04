@@ -4,6 +4,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
+ * 简单的不可重入锁
+ *
  * @param <T>
  * @author huangjinzhou
  * @date 2018年9月4日14点53分

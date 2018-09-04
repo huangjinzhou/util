@@ -23,6 +23,8 @@ public class SimpleIdLockTest {
             public void run() {
                 try {
                     stringIdLock.lock("a");
+                    Thread.sleep(100);
+                    stringIdLock.lock("b");
                     System.out.println("Thread1 begin");
                     for (int i = 0; i < 10; i++) {
                         System.out.println("Thread 1 running");
@@ -32,6 +34,7 @@ public class SimpleIdLockTest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                stringIdLock.unlock("b");
                 stringIdLock.unlock("a");
                 try {
                     barrier.await();
@@ -46,6 +49,8 @@ public class SimpleIdLockTest {
             public void run() {
                 try {
                     stringIdLock.lock("b");
+                    Thread.sleep(100);
+                    stringIdLock.lock("a");
                     System.out.println("Thread2 begin");
                     for (int i = 0; i < 10; i++) {
                         System.out.println("Thread 2 running");
@@ -55,6 +60,7 @@ public class SimpleIdLockTest {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                stringIdLock.unlock("a");
                 stringIdLock.unlock("b");
                 try {
                     barrier.await();
