@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
 public class SimpleIdLock<T> {
     private static final long DEFAULT_LOCK_WAIT_TIME = 100;
 
-    private static final Object FLAG = new Object();
+    private final Object FLAG = new Object();
 
     public SimpleIdLock(int capacity) {
         this.cache = new ConcurrentHashMap<>(capacity);
